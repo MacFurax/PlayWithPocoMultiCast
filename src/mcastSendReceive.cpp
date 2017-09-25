@@ -22,12 +22,15 @@ using namespace std;
 int main(){
 
     SocketAddress group("239.255.1.2", 12345);
-    MulticastSocket ms;
+    SocketAddress bindAdresse("192.168.1.30", 12346);
+    MulticastSocket ms(bindAdresse, true);
 
     bool running = true;
     char key = 0;
 
     Poco::Timespan span(250000);
+
+    ms.joinGroup( group.host() );
 
     while(running)
     {
